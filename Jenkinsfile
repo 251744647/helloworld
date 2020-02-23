@@ -9,7 +9,9 @@ pipeline {
         stage('Deploy Helloworld') {
             steps {
                 sh (script:"""
-                    new_version=${new_version:-latest}
+                    if [ "${new_version}" == '' ];then
+                        new_version="latest"
+                    fi
                     kubectl apply -f deploy.yaml
                 """)
             }
