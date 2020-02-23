@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: springboothelloworld
-          image: springboothelloworld:${new_version}
+          image: springboothelloworld:new_version
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
