@@ -3,15 +3,13 @@ pipeline {
         node { label 'DEVOPS' }
     }
     parameters {
-        string(name: 'new_version', description: 'deployed version')
+        string(name: 'new_version', defaultValue: 'latest', description: 'deployed version')
     }
     stages {
         stage('Deploy Helloworld') {
             steps {
                 sh (script:"""
-                    if [ "${new_version}" == '' ];then
-                        new_version="latest"
-                    fi
+                    echo "${new_version}"
                     sed -i "s/new_version/${new_version}/" deploy.yaml
                     kubectl apply -f deploy.yaml
                 """)
